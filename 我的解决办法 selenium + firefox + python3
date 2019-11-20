@@ -1,0 +1,47 @@
+我的selenium 版本：
+安装selenium:
+installed selenium-3.141.0
+
+所切换的源：有四个源，具体哪个成功了我并不知道，只知道这四个我同时放进了sudo nano /etc/apt/sources.list
+如下：
+#deb-src http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi
+deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi
+deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi
+# Uncomment line below then 'apt-get update' to enable 'apt-get source'
+#deb-src http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi
+deb-src http://ftp.de.debian.org/debian buster main 
+deb http://mirrors.ustc.edu.cn/raspbian/raspbian/dists/ buster main
+
+运行软件更新：sudo apt-get upgrade
+
+安装火狐：
+先搜索：apt search firebox
+安装：apt install firefox-esr
+
+下载驱动：https://github.com/mozilla/geckodriver/releases/tag/v0.23.0
+这里是手动下载了 geckodriver-v0.23.0-arm7hf.tar.gz
+解压后赋予权限：
+chmod a+x geckodriver
+移动到local/bin
+sudo mv geckodriver /usr/local/bin
+
+继续安装虚拟桌面：sudo apt-get install xvfb
+安装完执行：
+Xvfb -ac :7 -screen 0 1280x1024x8 -extension RANDR -nolisten inet6 &
+导入系统 （:7 和上一步的number号相同）
+export  DISPLAY=:7
+建议是放入启动项中，因为每次重启都需要执行
+
+测试：
+from selenium import webdriver
+from pyvirtualdisplay import Display
+display = Display(visible=0, size=(800, 600))
+display.start()
+profile = webdriver.FirefoxProfile()
+profile.native_events_enabled = False
+driver = webdriver.Firefox(profile)  #执行到这里没有报错就表示通过了
+driver.get('https://www.baidu.com')
+print ('PASS')
+driver.set_page_load_timeout(60)
+
+附上sina.py 抓取的sina实时新闻
