@@ -2,7 +2,8 @@
 
 <h3>解决了树莓派搭建buster10 selenium+firefoxdriver+python3环境搭建</h3>
 <p>selenium + google driver 最新的已经不再支持ARM</p>
-<p>详细搭建过程已经写在解决方案的文件中</p>
+<p>selenium+firefoxdriver+python3详细搭建过程已经写在解决方案的文件中</p>
+<p>提供了能成功应用的驱动包</p>
 <p>sina.py 用于验证环境搭建成功，news.txt文件能看到爬取的新闻</p>
 <hr>
 <h3>中国天气网的抓取数据</h3>
