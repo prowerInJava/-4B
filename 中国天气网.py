@@ -95,7 +95,7 @@ class Spider():
             return final7d
             
 if __name__=="__main__":
-      code = getCityCode(r'city.json',r'海门').getCode()
+      code = getCityCode(r'city.json',r'上海').getCode()
       print(code)
       url = 'http://www.weather.com.cn/weather/{}.shtml'.format(code)
       w7d = Spider().get7d(url)
